@@ -1,0 +1,43 @@
+/*
+ * Copyright 2014 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ext {
+    dependencyVersions = [
+        curatorVersion : '2.4.0',
+        groovyVersion : '2.2.1',
+        newRelicVersion : '3.5.1',
+        spockVersion : '0.7-groovy-2.0',
+        slf4jVersion : '1.7.6'
+    ]
+
+    compileDependencies = [
+        newRelic : "com.newrelic.agent.java:newrelic-api:${dependencyVersions.newRelicVersion}",
+        curatorClient : "org.apache.curator:curator-client:${dependencyVersions.curatorVersion}",
+        curatorFramework : "org.apache.curator:curator-framework:${dependencyVersions.curatorVersion}",
+        slf4j : "org.slf4j:slf4j-api:${dependencyVersions.slf4jVersion}"
+    ]
+
+    testDependencies = [
+        spock : dependencies.create("org.spockframework:spock-core:${dependencyVersions.spockVersion}", {
+            exclude group: 'org.codehaus.groovy', module: 'groovy-all'
+        }),
+        groovy : "org.codehaus.groovy:groovy-all:${dependencyVersions.groovy}",
+        cglib : 'cglib:cglib:2.2.2',
+        junit : 'junit:junit-dep:4.11',
+        objenesis : 'org.objenesis:objenesis:1.2',
+        groovy : "org.codehaus.groovy:groovy-all:${dependencyVersions.groovyVersion}",
+        curatorTest : "org.apache.curator:curator-test:${dependencyVersions.curatorVersion}"
+    ]
+  }
