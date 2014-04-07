@@ -334,4 +334,16 @@ class NewRelicWrappedCuratorFrameworkImplSpec extends Specification {
         then:
             1 * delegate.getNamespace()
     }
+
+    def "test that calls to newNamespaceAwareEnsurePath(String) invoke the underlying delegate"() {
+        setup:
+            CuratorFramework delegate = Mock() {
+                newNamespaceAwareEnsurePath(_) >> { null }
+            }
+            def client = new NewRelicWrappedCuratorFrameworkImpl(delegate)
+        when:
+            client.newNamespaceAwareEnsurePath('path')
+        then:
+            1 * delegate.newNamespaceAwareEnsurePath(_)
+    }
 }
