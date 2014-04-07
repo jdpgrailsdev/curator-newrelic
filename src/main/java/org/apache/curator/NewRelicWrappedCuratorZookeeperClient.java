@@ -24,6 +24,8 @@ import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.newrelic.NewRelicWrappedZookeeper;
 
+import com.newrelic.api.agent.Trace;
+
 /**
  * Wrapped version of the {@link CuratorZookeeperClient} that produces a
  * wrapped version of the underlying {@link ZooKeeper} instance.  The
@@ -100,6 +102,7 @@ public class NewRelicWrappedCuratorZookeeperClient extends CuratorZookeeperClien
 	}
 
 	@Override
+	@Trace
 	public ZooKeeper getZooKeeper() throws Exception {
 		return new NewRelicWrappedZookeeper(super.getZooKeeper(), getCurrentConnectionString());
 	}
