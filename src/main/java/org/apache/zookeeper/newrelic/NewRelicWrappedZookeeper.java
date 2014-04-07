@@ -38,18 +38,18 @@ import com.newrelic.api.agent.Trace;
 
 /**
  * Wrapped version of the {@link ZooKeeper} client.  The {@link ZooKeeper} instance
- * is instrumented to take part in <a href="http://newrelic.com">NewRelic</a> transaction traces.
+ * is instrumented to take part in <a href="http://newrelic.com">New Relic</a> transaction traces.
  *
  * @author Jonathan Pearlin
  * @since 1.0.0
  * @see ZooKeeper
- * @see <a href="http://newrelic.com">NewRelic</a>
+ * @see <a href="http://newrelic.com">New Relic</a>
  */
 public class NewRelicWrappedZookeeper extends ZooKeeper {
 
 	/**
 	 * Creates a new, wrapped {@code NewRelicWrappedZookeeper} instance that takes part in
-	 * <a href="http://newrelic.com">NewRelic</a> transaction traces.
+	 * <a href="http://newrelic.com">New Relic</a> transaction traces.
 	 * @param delegate The delegate {@link ZooKeeper} instance that will be used to create
 	 * 	this wrapped instance.
 	 * @param connectionString The ZooKeeper connection string.

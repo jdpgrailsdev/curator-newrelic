@@ -40,12 +40,12 @@ import com.newrelic.api.agent.Trace;
 
 /**
  * Wrapped {@link CuratorFramework} implementation that enables participation
- * in a new <a href="http://newrelic.com">NewRelic</a> transaction trace.
+ * in a new <a href="http://newrelic.com">New Relic</a> transaction trace.
  *
  * @author Jonathan Pearlin
  * @since 1.0.0
  * @see CuratorFramework
- * @see <a href="http://newrelic.com">NewRelic</a>
+ * @see <a href="http://newrelic.com">New Relic</a>
  */
 public class NewRelicWrappedCuratorFrameworkImpl implements CuratorFramework {
 

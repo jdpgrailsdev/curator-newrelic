@@ -22,7 +22,7 @@ import org.apache.curator.newrelic.framework.imps.NewRelicWrappedCuratorFramewor
 
 /**
  * This factory is intended to be used in place of the {@link CuratorFrameworkFactory} to create
- * {@link CuratorFramework} instances that participate in <a href="http://newrelic.com">NewRelic</a> transaction
+ * {@link CuratorFramework} instances that participate in <a href="http://newrelic.com">New Relic</a> transaction
  * traces.  It is intended to be used as a drop-in replacement wherever the existing {@link CuratorFrameworkFactory}
  * class is currently in use.
  *
@@ -30,7 +30,7 @@ import org.apache.curator.newrelic.framework.imps.NewRelicWrappedCuratorFramewor
  * @since 1.0.0
  * @see CuratorFramework
  * @see CuratorFrameworkFactory
- * @see <a href="http://newrelic.com">NewRelic</a>
+ * @see <a href="http://newrelic.com">New Relic</a>
  */
 public class NewRelicClientFrameworkFactory {
 
@@ -49,9 +49,9 @@ public class NewRelicClientFrameworkFactory {
 	 * @param connectString The list of servers to connect to.
 	 * @param retryPolicy The {@link RetryPolicy} to use.
 	 * @return client An implementation of the {@link CuratorFramework} interface that has been instrumented for participation in a
-	 * 	<a href="http://newrelic.com">NewRelic</a> transaction trace.
+	 * 	<a href="http://newrelic.com">New Relic</a> transaction trace.
 	 * @see CuratorFrameworkFactory#newClient(String, RetryPolicy)
-	 * @see <a href="http://newrelic.com">NewRelic</a>
+	 * @see <a href="http://newrelic.com">New Relic</a>
 	 */
 	public static CuratorFramework newClient(final String connectString, final RetryPolicy retryPolicy) {
 		return newClient(connectString, DEFAULT_SESSION_TIMEOUT_MS, DEFAULT_CONNECTION_TIMEOUT_MS, retryPolicy);
@@ -64,9 +64,9 @@ public class NewRelicClientFrameworkFactory {
 	 * @param connectionTimeoutMs The connection timeout in milliseconds.
 	 * @param retryPolicy The {@link RetryPolicy} to use.
 	 * @return client An implementation of the {@link CuratorFramework} interface that has been instrumented for participation in a
-	 * 	<a href="http://newrelic.com">NewRelic</a> transaction trace.
+	 * 	<a href="http://newrelic.com">New Relic</a> transaction trace.
 	 * @see CuratorFrameworkFactory#newClient(String, int, int, RetryPolicy)
-	 * @see <a href="http://newrelic.com">NewRelic</a>
+	 * @see <a href="http://newrelic.com">New Relic</a>
 	 */
 	public static CuratorFramework newClient(final String connectString, final int sessionTimeoutMs, final int connectionTimeoutMs, final RetryPolicy retryPolicy) {
 		return new NewRelicWrappedCuratorFrameworkImpl(CuratorFrameworkFactory.newClient(connectString, sessionTimeoutMs, connectionTimeoutMs,  retryPolicy));

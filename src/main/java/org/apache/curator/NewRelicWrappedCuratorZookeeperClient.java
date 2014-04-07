@@ -27,19 +27,19 @@ import org.apache.zookeeper.newrelic.NewRelicWrappedZookeeper;
 /**
  * Wrapped version of the {@link CuratorZookeeperClient} that produces a
  * wrapped version of the underlying {@link ZooKeeper} instance.  The
- * {@link ZooKeeper} instance is instrumented to take part in <a href="http://newrelic.com">NewRelic</a>
+ * {@link ZooKeeper} instance is instrumented to take part in <a href="http://newrelic.com">New Relic</a>
  * transaction traces.
  *
  * @author Jonathan Pearlin
  * @since 1.0.0
  * @see CuratorZookeeperClient
- * @see <a href="http://newrelic.com">NewRelic</a>
+ * @see <a href="http://newrelic.com">New Relic</a>
  */
 public class NewRelicWrappedCuratorZookeeperClient extends CuratorZookeeperClient {
 
 	/**
 	 * Constructs a new, wrapped {@link CuratorZookeeperClient} that takes part
-	 * in <a href="http://newrelic.com">NewRelic</a> transaction traces.
+	 * in <a href="http://newrelic.com">New Relic</a> transaction traces.
 	 * @param delegate The delegate {@link CuratorZookeeperClient} from which this
 	 * 	wrapped version will be created.
 	 * @throws NoSuchFieldException if unable to clone data from the delegate.
@@ -55,7 +55,7 @@ public class NewRelicWrappedCuratorZookeeperClient extends CuratorZookeeperClien
 	}
 
 	/**
-	 * Creates a new, wrapped {@link CuratorZookeeperClient} that takes part in <a href="http://newrelic.com">NewRelic</a> transaction traces.
+	 * Creates a new, wrapped {@link CuratorZookeeperClient} that takes part in <a href="http://newrelic.com">New Relic</a> transaction traces.
 	 * @param ensembleProvider The {@link EnsembleProvider}.
 	 * @param sessionTimeoutMs The session timeout in milliseconds.  Should be less
 	 * 	than the connection timeout.
@@ -69,7 +69,7 @@ public class NewRelicWrappedCuratorZookeeperClient extends CuratorZookeeperClien
 	}
 
 	/**
-	 * Creates a new, wrapped {@link CuratorZookeeperClient} that takes part in <a href="http://newrelic.com">NewRelic</a> transaction traces.
+	 * Creates a new, wrapped {@link CuratorZookeeperClient} that takes part in <a href="http://newrelic.com">New Relic</a> transaction traces.
 	 * @param connectString The connection string.
 	 * @param sessionTimeoutMs The session timeout in milliseconds.  Should be less
 	 * 	than the connection timeout.
@@ -83,7 +83,7 @@ public class NewRelicWrappedCuratorZookeeperClient extends CuratorZookeeperClien
 	}
 
 	/**
-	 * Creates a new, wrapped {@link CuratorZookeeperClient} that takes part in <a href="http://newrelic.com">NewRelic</a> transaction traces.
+	 * Creates a new, wrapped {@link CuratorZookeeperClient} that takes part in <a href="http://newrelic.com">New Relic</a> transaction traces.
 	 * @param zookeeperFactory The factory for creating {@link ZooKeeper} instances.
 	 * @param ensembleProvider The {@link EnsembleProvider}.
 	 * @param sessionTimeoutMs The session timeout in milliseconds.  Should be less
