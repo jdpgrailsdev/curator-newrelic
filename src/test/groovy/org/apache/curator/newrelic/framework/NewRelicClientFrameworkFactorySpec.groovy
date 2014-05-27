@@ -24,34 +24,34 @@ import spock.lang.Specification
 
 class NewRelicClientFrameworkFactorySpec extends Specification {
 
-	@Shared
-	TestingServer server
+    @Shared
+    TestingServer server
 
-	def setupSpec() {
-		server = new TestingServer()
-	}
+    def setupSpec() {
+        server = new TestingServer()
+    }
 
-	def cleanupSpec() {
-		server.stop()
-	}
+    def cleanupSpec() {
+        server.stop()
+    }
 
-	def "test creating a NewRelic wrapped CuratorFramework client for a connection string and retry policy"() {
-		when:
-		def client = NewRelicClientFrameworkFactory.newClient(server.connectString, new RetryOneTime(0))
-		then:
-		client != null
-		client instanceof NewRelicWrappedCuratorFrameworkImpl
-		cleanup:
-		client.close()
-	}
+    def "test creating a New Relic wrapped CuratorFramework client for a connection string and retry policy"() {
+        when:
+        def client = NewRelicClientFrameworkFactory.newClient(server.connectString, new RetryOneTime(0))
+        then:
+        client != null
+        client instanceof NewRelicWrappedCuratorFrameworkImpl
+        cleanup:
+        client.close()
+    }
 
-	def "test creating a NewRelic wrapped CuratorFramework client for a connection string, timeouts and retry policy"() {
-		when:
-		def client = NewRelicClientFrameworkFactory.newClient(server.connectString, 10, 30, new RetryOneTime(0))
-		then:
-		client != null
-		client instanceof NewRelicWrappedCuratorFrameworkImpl
-		cleanup:
-		client.close()
-	}
+    def "test creating a New Relic wrapped CuratorFramework client for a connection string, timeouts and retry policy"() {
+        when:
+        def client = NewRelicClientFrameworkFactory.newClient(server.connectString, 10, 30, new RetryOneTime(0))
+        then:
+        client != null
+        client instanceof NewRelicWrappedCuratorFrameworkImpl
+        cleanup:
+        client.close()
+    }
 }

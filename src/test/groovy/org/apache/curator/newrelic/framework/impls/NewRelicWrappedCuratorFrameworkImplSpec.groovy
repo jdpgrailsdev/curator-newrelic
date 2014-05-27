@@ -39,7 +39,7 @@ class NewRelicWrappedCuratorFrameworkImplSpec extends Specification {
         server.stop()
     }
 
-    def "test creating a NewRelic wrapped CuratorFramework client from a delegate CuratorFramework client"() {
+    def "test creating a New Relic wrapped CuratorFramework client from a delegate CuratorFramework client"() {
         when:
             def client = new NewRelicWrappedCuratorFrameworkImpl(CuratorFrameworkFactory.newClient(server.connectString, new RetryOneTime(0)))
         then:
@@ -52,14 +52,14 @@ class NewRelicWrappedCuratorFrameworkImplSpec extends Specification {
             client.close()
     }
 
-    def "test creating a NewRelic wrapped CuratorFramework client from a null delegate"() {
+    def "test creating a New Relic wrapped CuratorFramework client from a null delegate"() {
         when:
             new NewRelicWrappedCuratorFrameworkImpl(null)
         then:
             thrown(IllegalArgumentException)
     }
 
-    def "test retrieving the NewRelic wrapped ZooKeeper client"() {
+    def "test retrieving the New Relic wrapped ZooKeeper client"() {
         setup:
             def client = new NewRelicWrappedCuratorFrameworkImpl(CuratorFrameworkFactory.newClient(server.connectString, new RetryOneTime(0)))
         when:
@@ -71,7 +71,7 @@ class NewRelicWrappedCuratorFrameworkImplSpec extends Specification {
             client.close()
     }
 
-    def "test retrieving the NewRelic wrapped ZooKeeper client when an exception occurs"() {
+    def "test retrieving the New Relic wrapped ZooKeeper client when an exception occurs"() {
         setup:
             CuratorFramework delegate = Mock() {
                 getZookeeperClient() >> { throw new IllegalArgumentException('test') }
@@ -81,6 +81,8 @@ class NewRelicWrappedCuratorFrameworkImplSpec extends Specification {
             def zkClient = client.getZookeeperClient()
         then:
             thrown IllegalArgumentException
+        cleanup:
+            client.close()
     }
 
     def "test that calls to start() invoke the underlying delegate"() {
@@ -93,6 +95,8 @@ class NewRelicWrappedCuratorFrameworkImplSpec extends Specification {
             client.start()
         then:
             1 * delegate.start()
+        cleanup:
+            client.close()
     }
 
     def "test that calls to close() invoke the underlying delegate"() {
@@ -105,6 +109,8 @@ class NewRelicWrappedCuratorFrameworkImplSpec extends Specification {
             client.close()
         then:
             1 * delegate.close()
+        cleanup:
+            client.close()
     }
 
     def "test that calls to getState() invoke the underlying delegate"() {
@@ -117,6 +123,8 @@ class NewRelicWrappedCuratorFrameworkImplSpec extends Specification {
             client.getState()
         then:
             1 * delegate.getState()
+        cleanup:
+            client.close()
     }
 
     def "test that calls to isStarted() invoke the underlying delegate"() {
@@ -129,6 +137,8 @@ class NewRelicWrappedCuratorFrameworkImplSpec extends Specification {
             client.isStarted()
         then:
             1 * delegate.isStarted()
+        cleanup:
+            client.close()
     }
 
     def "test that calls to create() invoke the underlying delegate"() {
@@ -141,6 +151,8 @@ class NewRelicWrappedCuratorFrameworkImplSpec extends Specification {
             client.create()
         then:
             1 * delegate.create()
+        cleanup:
+            client.close()
     }
 
     def "test that calls to delete() invoke the underlying delegate"() {
@@ -153,6 +165,8 @@ class NewRelicWrappedCuratorFrameworkImplSpec extends Specification {
             client.delete()
         then:
             1 * delegate.delete()
+        cleanup:
+            client.close()
     }
 
     def "test that calls to checkExists() invoke the underlying delegate"() {
@@ -165,6 +179,8 @@ class NewRelicWrappedCuratorFrameworkImplSpec extends Specification {
             client.checkExists()
         then:
             1 * delegate.checkExists()
+        cleanup:
+            client.close()
     }
 
     def "test that calls to getData() invoke the underlying delegate"() {
@@ -177,6 +193,8 @@ class NewRelicWrappedCuratorFrameworkImplSpec extends Specification {
             client.getData()
         then:
             1 * delegate.getData()
+        cleanup:
+            client.close()
     }
 
     def "test that calls to setData() invoke the underlying delegate"() {
@@ -189,6 +207,8 @@ class NewRelicWrappedCuratorFrameworkImplSpec extends Specification {
             client.setData()
         then:
             1 * delegate.setData()
+        cleanup:
+            client.close()
     }
 
     def "test that calls to getChildren() invoke the underlying delegate"() {
@@ -201,6 +221,8 @@ class NewRelicWrappedCuratorFrameworkImplSpec extends Specification {
             client.getChildren()
         then:
             1 * delegate.getChildren()
+        cleanup:
+            client.close()
     }
 
     def "test that calls to getACL() invoke the underlying delegate"() {
@@ -213,6 +235,8 @@ class NewRelicWrappedCuratorFrameworkImplSpec extends Specification {
             client.getACL()
         then:
             1 * delegate.getACL()
+        cleanup:
+            client.close()
     }
 
     def "test that calls to setACL() invoke the underlying delegate"() {
@@ -225,6 +249,8 @@ class NewRelicWrappedCuratorFrameworkImplSpec extends Specification {
             client.setACL()
         then:
             1 * delegate.setACL()
+        cleanup:
+            client.close()
     }
 
     def "test that calls to inTransaction() invoke the underlying delegate"() {
@@ -249,6 +275,8 @@ class NewRelicWrappedCuratorFrameworkImplSpec extends Specification {
             client.sync('path', new Object())
         then:
             1 * delegate.sync(_,_)
+        cleanup:
+            client.close()
     }
 
     def "test that calls to sync() invoke the underlying delegate"() {
@@ -261,6 +289,8 @@ class NewRelicWrappedCuratorFrameworkImplSpec extends Specification {
             client.sync()
         then:
             1 * delegate.sync()
+        cleanup:
+            client.close()
     }
 
     def "test that calls to getConnectionStateListenable() invoke the underlying delegate"() {
@@ -273,6 +303,8 @@ class NewRelicWrappedCuratorFrameworkImplSpec extends Specification {
             client.getConnectionStateListenable()
         then:
             1 * delegate.getConnectionStateListenable()
+        cleanup:
+            client.close()
     }
 
     def "test that calls to getCuratorListenable() invoke the underlying delegate"() {
@@ -285,6 +317,8 @@ class NewRelicWrappedCuratorFrameworkImplSpec extends Specification {
             client.getCuratorListenable()
         then:
             1 * delegate.getCuratorListenable()
+        cleanup:
+            client.close()
     }
 
     def "test that calls to getUnhandledErrorListenable() invoke the underlying delegate"() {
@@ -297,6 +331,8 @@ class NewRelicWrappedCuratorFrameworkImplSpec extends Specification {
             client.getUnhandledErrorListenable()
         then:
             1 * delegate.getUnhandledErrorListenable()
+        cleanup:
+            client.close()
     }
 
     def "test that calls to nonNamespaceView() invoke the underlying delegate"() {
@@ -309,6 +345,8 @@ class NewRelicWrappedCuratorFrameworkImplSpec extends Specification {
             client.nonNamespaceView()
         then:
             1 * delegate.nonNamespaceView()
+        cleanup:
+            client.close()
     }
 
     def "test that calls to usingNamespace(String) invoke the underlying delegate"() {
@@ -321,6 +359,8 @@ class NewRelicWrappedCuratorFrameworkImplSpec extends Specification {
             client.usingNamespace('namespace')
         then:
             1 * delegate.usingNamespace(_)
+        cleanup:
+            client.close()
     }
 
     def "test that calls to getNamespace() invoke the underlying delegate"() {
@@ -333,6 +373,8 @@ class NewRelicWrappedCuratorFrameworkImplSpec extends Specification {
             client.getNamespace()
         then:
             1 * delegate.getNamespace()
+        cleanup:
+            client.close()
     }
 
     def "test that calls to newNamespaceAwareEnsurePath(String) invoke the underlying delegate"() {
@@ -345,5 +387,7 @@ class NewRelicWrappedCuratorFrameworkImplSpec extends Specification {
             client.newNamespaceAwareEnsurePath('path')
         then:
             1 * delegate.newNamespaceAwareEnsurePath(_)
+        cleanup:
+            client.close()
     }
 }

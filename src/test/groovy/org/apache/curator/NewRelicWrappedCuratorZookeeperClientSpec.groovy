@@ -26,37 +26,41 @@ import spock.lang.Specification
 
 class NewRelicWrappedCuratorZookeeperClientSpec extends Specification {
 
-	@Shared
-	TestingServer server
+    @Shared
+    TestingServer server
 
-	@Shared
-	CuratorFramework client
+    @Shared
+    CuratorFramework client
 
-	def setupSpec() {
-		server = new TestingServer()
-		client = NewRelicClientFrameworkFactory.newClient(server.connectString, new RetryOneTime(0))
-	}
+    def setupSpec() {
+        server = new TestingServer()
+        client = NewRelicClientFrameworkFactory.newClient(server.connectString, new RetryOneTime(0))
+    }
 
-	def cleanupSpec() {
-		client.close()
-		server.stop()
-	}
+    def cleanupSpec() {
+        client.close()
+        server.stop()
+    }
 
-	def "test the creation of a NewRelic wrapped Curator ZooKeeper client from a delegate"() {
-		when:
-		def wrappedClient = new NewRelicWrappedCuratorZookeeperClient(client.getZookeeperClient())
-		then:
-		notThrown(Exception)
-		wrappedClient != null
-	}
+    def "test the creation of a New Relic wrapped Curator ZooKeeper client from a delegate"() {
+        when:
+            def wrappedClient = new NewRelicWrappedCuratorZookeeperClient(client.getZookeeperClient())
+        then:
+            notThrown(Exception)
+            wrappedClient != null
+        cleanup:
+            wrappedClient.close()
+    }
 
-	def "test retrieving the ZooKeeper client from the NewRelic wrapped Curator ZooKeeper client"() {
-		setup:
-		def wrappedClient = new NewRelicWrappedCuratorZookeeperClient(client.getZookeeperClient())
-		when:
-		def wrappedZkClient = wrappedClient.getZooKeeper()
-		then:
-		wrappedZkClient != null
-		wrappedZkClient instanceof NewRelicWrappedZookeeper
-	}
+    def "test retrieving the ZooKeeper client from the New Relic wrapped Curator ZooKeeper client"() {
+        setup:
+            def wrappedClient = new NewRelicWrappedCuratorZookeeperClient(client.getZookeeperClient())
+        when:
+            def wrappedZkClient = wrappedClient.getZooKeeper()
+        then:
+            wrappedZkClient != null
+            wrappedZkClient instanceof NewRelicWrappedZookeeper
+        cleanup:
+            wrappedClient.close()
+    }
 }

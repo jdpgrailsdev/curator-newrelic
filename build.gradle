@@ -76,3 +76,5 @@ license {
         groovy='SLASHSTAR_STYLE'
     }
 }
+
+test.finalizedBy(project.tasks.cobertura)
